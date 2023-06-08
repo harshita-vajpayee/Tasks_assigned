@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+
+
+
+</head>
+
+<body style="padding:0; margin:0; overflow: hidden; ">
+    <!--items will be fetched here-->
+    <!--Web-->
+    <!-----------OR-------------->
+    <!--Mobile-->
+
+</body>
+
+
+<!--javascript-->
+<script>
+    let onLoad_core_1mn = () => {
+
+        //test..
+        let mTest = () => {
+
+            //set btns..
+            let mSet_btns = (mE) => {
+                let mBtnsDiv = document.createElement("div");
+                mE.appendChild(mBtnsDiv);
+
+                //set..
+                let mSet_Btn = (txt = "") => {
+                    let mBtn = document.createElement("button");
+                    mBtn.style.margin = "0.5vh";
+                    mBtn.innerHTML = txt;
+                    mBtnsDiv.appendChild(mBtn);
+                    return mBtn;
+                };
+
+                //set..
+
+                mSet_Btn("Popup With Form 1").onclick = () => {
+                    mSamplesDiv.innerHTML = ""; //reset..
+                    mSet_PopupWithForm1(mSamplesDiv);
+                };
+
+
+            };
+            mSet_btns(document.body);
+
+
+            //----------Samples Starts Here----------//
+            let mSamplesDiv = document.createElement("div");
+            document.body.appendChild(mSamplesDiv);
+
+            //----Popup With Form 1----//
+            let mSet_PopupWithForm1 = (mRootE = document.body) => {
+                let mDiv = document.createElement("div");
+                mDiv.style.margin = "10vh";
+                mRootE.appendChild(mDiv);
+
+
+                //mStart_popUp..
+                let mStart_popUp = (mP = {
+                    "h0": null,
+                    "h1": null
+                }) => {
+                    //set vars..
+                    let h0 = mP["h0"];
+                    let h1 = mP["h1"];
+                    //set..
+                    let mEvents = core_1mn['dialog']['1'].set({
+                        //"c1": "my_id_DIALOG",
+                        "h0": h0,
+                        "h1": h1,
+                        "c2": "35%", //width
+                        "c3": "43%", //height
+                        "c6": "rgba(0,32,96, 1)",
+                        "c7": "rgba(255,255,255, 1)",
+                        "mCb": {
+                            "onClose": () => {
+                                //onClose.....
+                                //alert("onClose");
+                            },
+                            "onLoad": (data) => {
+                                var m0 = data['0']; //content holder.....
+                                //mContent.....
+                                var mContent = document.createElement("div");
+                                mContent.style.width = "100%";
+                                mContent.style.height = "62vh"; //100%
+                                mContent.style.overflowY = "auto";
+                                m0.appendChild(mContent);
+
+                                //mPopCover..
+                                let mPopCover = mContent;
+
+                                //set vars..
+                                let dta_ExportData = {};
+
+                                //default payload.. [Note: datatypes is targeted to Ui fields..so that payload cannot be used directly.]
+                                let def_payload = {
+                                    "donate_at_temple": true,
+                                    "donate_online": false,
+                                    "donate_through_IDT": false,
+                                    "donate_via_invoice": false
+                                };
+
+
+                                //set..
+                                function mSet_l() {
+
+                                    //Space.....
+                                    core_1mn['space'].set({
+                                        "h": "2vh",
+                                        "e1": mContent,
+                                    });
+
+
+                                    //set item1..
+                                    let mSet_i1 = () => {
+                                        var mI = document.createElement("div");
+                                        mI.style.width = "100%";
+                                        //mI.style.height = "100%";
+                                        mContent.appendChild(mI);
+
+                                        //Space.....
+                                        core_1mn['space'].set({
+                                            "h": "3vh",
+                                            "e1": mI,
+                                        });
+
+                                        //form..
+                                        function mForm(mE) {
+                                            var mForm = document.createElement("div");
+                                            mForm.style.width = "100%"; //95%
+                                            mForm.style.display = "flex";
+                                            //mForm.style.backgroundColor = "red";
+                                            mE.appendChild(mForm);
+
+                                            //Space.....
+                                            core_1mn['space'].set({
+                                                "w": "2vw",
+                                                "e1": mForm,
+                                            });
+
+                                            //schema..
+                                            let mSchema = {};
+
+                                            //fld..
+                                            let fld_donate_at_temple = {
+                                                "elementID": core_1mn['mUniqueId'].mGenerate(11),
+                                                "type": "cbox",
+                                                "label": "Donate at Temple",
+                                                "w": "8vw",
+
+                                                "$mUsrData": {
+                                                    "donate_at_temple": def_payload.donate_at_temple,
+                                                },
+                                            };
+                                            let fld_donate_online = {
+                                                "elementID": core_1mn['mUniqueId'].mGenerate(11),
+                                                "type": "cbox",
+                                                "label": "Donate Online",
+                                                "w": "8vw",
+
+                                                "$mUsrData": {
+                                                    "donate_online": def_payload.donate_online,
+                                                },
+                                            };
+                                            let fld_donate_through_IDT = {
+                                                "elementID": core_1mn['mUniqueId'].mGenerate(11),
+                                                "type": "cbox",
+                                                "label": "Donate through IDT",
+                                                "w": "8vw",
+
+                                                "$mUsrData": {
+                                                    "donate_through_IDT": def_payload.donate_through_IDT,
+                                                },
+                                            };
+                                            let fld_donate_via_invoice = {
+                                                "elementID": core_1mn['mUniqueId'].mGenerate(11),
+                                                "type": "cbox",
+                                                "label": "Donate via invoice",
+                                                "w": "8vw",
+
+                                                "$mUsrData": {
+                                                    "donate_via_invoice": def_payload.donate_via_invoice,
+                                                },
+                                            };
+
+                                            //form builder..
+                                            var mFormBuilder = {
+                                                "mArr1": [
+
+                                                    {
+                                                        "orien": "h",
+                                                        "mFieldList": [
+
+                                                            {
+                                                                "elementID": core_1mn['mUniqueId'].mGenerate(11),
+                                                                "type": "custom",
+                                                                "w": "11vw", //width
+                                                                //"h": "3vh", //height
+                                                                "xcode": { //xcode..by using it you can pass your existing code (see => @xcode [For more info])
+                                                                    //"html": ``, //Your html code
+                                                                    //"css": ``,  //Your css code
+                                                                    //"js": ``,  //Your js code
+                                                                    "dom": () => {
+                                                                        let mDiv = document.createElement("div");
+                                                                        mDiv.innerHTML = "Choose Donation Method:";
+                                                                        mDiv.style.fontSize = "1.7vh";
+                                                                        return mDiv;
+                                                                    }, //Your DOM eg => document.createElement("div")
+                                                                },
+
+                                                                "$mUsrData": {
+                                                                    "YOUR_JSON_KEY": "", //you can return this value..and build a payload (auto) with our [Form System]
+                                                                },
+
+                                                            },
+                                                            fld_donate_at_temple,
+                                                            fld_donate_online,
+                                                            // fld_donate_through_IDT,
+                                                            // fld_donate_via_invoice
+                                                        ]
+                                                    }, {
+                                                        "orien": "h",
+                                                        "mFieldList": [{
+                                                                "elementID": core_1mn['mUniqueId'].mGenerate(11),
+                                                                "type": "custom",
+                                                                "w": "11vw", //width
+                                                                //"h": "3vh",   //height
+                                                                "xcode": { //xcode..by using it you can pass your existing code (see => @xcode [For more info])
+                                                                    //"html": ``, //Your html code
+                                                                    //"css": ``,  //Your css code
+                                                                    //"js": ``,  //Your js code
+                                                                    "dom": () => {
+                                                                        let mDiv = document.createElement("div");
+                                                                        mDiv.innerHTML = "";
+                                                                        mDiv.style.fontSize = "1.7vh";
+                                                                        return mDiv;
+                                                                    }, //Your DOM eg => document.createElement("div")
+                                                                },
+
+                                                                "$mUsrData": {
+                                                                    "YOUR_JSON_KEY2": "", //you can return this value..and build a payload (auto) with our [Form System]
+                                                                },
+
+                                                            },
+
+                                                            // fld_donate_at_temple,
+                                                            // fld_donate_online,
+                                                            fld_donate_through_IDT,
+                                                            fld_donate_via_invoice
+                                                        ]
+                                                    },
+
+
+                                                ],
+                                                //(mArr1) later will be updated (*Do not place variable here instead place direct (ARRAY) )
+                                                "0": {
+                                                    "0": "",
+                                                    //"1": "32vh",
+                                                    //"2": "0"
+                                                },
+                                                "orien": "v",
+                                                "cb": {
+                                                    "mOnLoad": (mGetParams) => {
+                                                        var mParams = mGetParams;
+                                                        var mFormHolder = mParams['mFormHolder'];
+                                                        mForm.appendChild(mFormHolder);
+                                                    },
+                                                    "mOnError": (mGetParams) => {
+                                                        var mParams = mGetParams;
+                                                        console.log(mParams);
+                                                    },
+                                                }
+                                            };
+                                            core_1mn['mForm']['mB'].set(mFormBuilder);
+
+                                            //return..
+                                            return {
+                                                "mSchema": mSchema,
+                                                "mFormBuilder": mFormBuilder,
+                                            };
+                                        }
+                                        let mForm_RES = mForm(mI);
+
+
+                                        //Space.....
+                                        core_1mn['space'].set({
+                                            "h": "12vh",
+                                            "e1": mI,
+                                        });
+
+
+                                        //btns..
+                                        function mSet_btns(mItem) {
+                                            var mBtnList = document.createElement("div");
+                                            mBtnList.style.display = "flex";
+                                            mBtnList.style.alignItems = "center";
+                                            mBtnList.style.justifyContent = "center";
+                                            mItem.appendChild(mBtnList);
+
+
+                                            function mSet_btn1() {
+                                                //Btn.....  
+                                                var mBtnHolder = document.createElement("div");
+                                                mBtnList.appendChild(mBtnHolder);
+                                                var mConf = {
+                                                    "e1": mBtnHolder,
+                                                    "w": "4.5vw",
+                                                    "posH": 1,
+                                                    "h": "3.2vh",
+                                                    "txt": {
+                                                        "0": "Approve",
+                                                        "1": "1.3vh"
+                                                    },
+                                                    /*"ico": {"0": "upload_0.svg", "1": "1.7vh", "2": "1.7vh", 
+                                                    //"3": "rgba(255,255,255, 1.0)"
+                                                    },*/
+
+                                                    "cb": {
+                                                        "onClick": function(data) {
+                                                            //set..
+                                                            core_1mn['mForm']['mV'].set({
+                                                                "form_payload": mForm_RES["mFormBuilder"]["mArr1"],
+                                                                "schema": mForm_RES["mSchema"], //schema_test
+                                                                "cb": {
+                                                                    "mOnLoad": (mGetParams) => {
+                                                                        //validation is success....
+                                                                        var mParams = mGetParams;
+                                                                        var mUsrPayload = mParams['usr_payload'];
+                                                                        console.log(mUsrPayload);
+                                                                        //store..
+                                                                        /*let mKey1 = Object.keys(mUsrPayload)[0];
+                                                                        mPayload[mKey1] = mUsrPayload[mKey1];*/
+                                                                    },
+                                                                    "mOnError": (mGetParams) => {
+                                                                        var mParams = mGetParams;
+                                                                        console.log(mParams);
+                                                                    },
+                                                                }
+                                                            });
+
+                                                        },
+                                                    },
+                                                    "typ": 1,
+                                                    "vari": 0
+                                                };
+                                                var mBtn = core_1mn['btn']['1'].set(mConf);
+                                            }
+                                            mSet_btn1();
+
+
+
+                                        }
+                                        mSet_btns(mI);
+
+
+
+                                    }
+                                    mSet_i1();
+
+
+                                }
+                                mSet_l();
+
+
+                            }
+                        }
+
+                    });
+                    //close..
+                    //mEvents['dialog'].close();
+                    //show..
+                    mEvents['dialog'].show();
+                };
+
+
+                //launch..(inBuilt)
+                /*core_kms["dialogs"]["exportDta1"].set({
+                     "h0": "Sample Popup",
+                        "h1": {
+                            //"0": mItemsDD["ico"]["0"]   //filename (svg)
+                    }
+                });*/
+
+                mStart_popUp({
+                    "h0": "Approval",
+                    "h1": {
+                        //"0": mItemsDD["ico"]["0"]   //filename (svg)
+                    }
+                });
+
+
+            };
+
+
+
+        }
+
+        mTest();
+
+
+    };
+</script>
+
+
+<!--core_1mn-->
+<!--script onload=onLoad_core_1mn() src="js/core_1mn.js" ></script-->
+
+<script>
+    import ("../../libs/core_1mn/config/config_mn.js").then(() => {
+        import ("../../libs/core_1mn/core_1mn.js").then(() => {
+            import ("./libs/core_kms/core_kms.js").then((v) => {
+                console.log(core_1mn);
+                console.log(config_mn);
+                console.log(core_kms);
+                //onload..
+                onLoad_core_1mn();
+                //alert("Init success..");
+            }).catch((e) => {
+                console.log(e);
+            });
+        }).catch((e) => {
+            console.log(e);
+        });
+    }).catch((e) => {
+        console.log(e);
+    });
+</script>
+
+
+</html>
