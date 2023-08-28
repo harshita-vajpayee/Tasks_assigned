@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dynamic Calendar</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9; /* Slightly brighter background */
+    }
+
+    .calendar {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #f7f7f7; /* Slightly brighter background */
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+      padding: 16px;
+      background-color: #6aa1b0; /* Brighter header background */
+      color: #fff;
+    }
+
+    .header button {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    .header button:hover {
+      opacity: 0.8;
+    }
+
+    .days {
+      display: flex;
+      justify-content: space-between;
+      background-color: #e4e4e4; /* Slightly brighter days background */
+      padding: 12px;
+      font-weight: bold;
+    }
+
+    .day {
+      width: calc(100% / 7);
+      text-align: center;
+      padding: 16px 0;
+    }
+
+    .day:hover {
+      background-color: #d3d3d3; /* Slightly brighter hover effect */
+      cursor: pointer;
+    }
+
+    .day.today {
+      background-color: #6aa1b0; /* Brighter today cell background */
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .dates {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      border-top: 1px solid #ccc; /* Slightly brighter border */
+      border-right: 1px solid #ccc; /* Slightly brighter border */
+    }
+
+    .date {
+      width: calc(100% / 7);
+      text-align: center;
+      padding: 16px 0;
+      border-bottom: 1px solid #ccc; /* Slightly brighter border */
+      border-left: 1px solid #ccc; /* Slightly brighter border */
+    }
+
+    .date:hover {
+      background-color: #d3d3d3; /* Slightly brighter hover effect */
+      cursor: pointer;
+    }
+
+    .date.today {
+      background-color: #6aa1b0; /* Brighter today cell background */
+      color: #fff;
+      font-weight: bold;
+    }
+
+    /* Styling for the buttons and dropdowns */
+    button, select {
+      font-size: 24px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 4px;
+      background-color: #6aa1b0; /* Brighter buttons background */
+      color: #fff;
+      cursor: pointer;
+    }
+
+    button:hover, select:hover {
+      background-color: #47838f; /* Slightly brighter hover effect for buttons and dropdowns */
+    }
+
+    select {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+   <!-- Navbar -->
+   <nav class="navbar navbar-expand-lg bg-primary shadow">
+    <div class="container-fluid d-flex justify-content-between">
+        <div class="d-flex justify-content-center align-items-center my-0 py-0">
+            <button class="btn text-white" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+                aria-controls="offcanvasWithBothOptions">
+                <span class="navbar-toggler-icon text-white"></span>
+            </button>
+            <a class=" navbar-brand text-white text-uppercase" href="#">Kitchen</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class=" d-flex justify-content-end">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 z-100">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">Menu</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <img class="object-fit-cover border rounded-circle " style="width: 40px;" src="/images/profile.jpg"
+                    alt="profile">
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!--  Sidebar -->
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+    aria-labelledby="offcanvasWithBothOptionsLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="list-group list-group-flush mx-2 mt-4">
+            <a href="/home.html" class="listOfLinks list-group-item list-group-item-action py-2 ripple"
+                aria-current="true">
+                <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>ICS Home</span>
+            </a>
+            <a href="/menu_management.html" class="listOfLinks list-group-item list-group-item-action py-2 ripple">
+                <i class="fas fa-chart-area fa-fw me-3"></i><span>Menu Management</span>
+            </a>
+            <a href="/all_meal_count.html" class="listOfLinks list-group-item list-group-item-action py-2 ripple">
+                <i class="fas fa-lock fa-fw me-3"></i><span>All Meals Count</span>
+            </a>
+            <a href="/all_cooking_sheets.html"
+                class="listOfLinks list-group-item list-group-item-action py-2 ripple">
+                <i class="fas fa-chart-line fa-fw me-3"></i><span>All Cooking Sheets</span>
+            </a>
+            <a href="/" class="active listOfLinks list-group-item list-group-item-action py-2 ripple">
+                <i class="fas fa-chart-pie fa-fw me-3"></i><span>Serving Data Entry</span>
+            </a>
+            <a href="/purchase_list.html" class="listOfLinks list-group-item list-group-item-action py-2 ripple">
+                <i class="fas fa-chart-bar fa-fw me-3"></i><span>Purchase List</span>
+            </a>
+            <a href="/" class="listOfLinks list-group-item list-group-item-action py-2 ripple">
+                <i class="fas fa-globe fa-fw me-3"></i><span>All Recipes</span>
+            </a>
+            <a href="/calendar.html" class="listOfLinks list-group-item list-group-item-action py-2 ripple">
+                <i class="fas fa-building fa-fw me-3"></i><span>Event Calendar</span>
+            </a>
+            <a href="/costCalculator.html" class="listOfLinks list-group-item list-group-item-action py-2 ripple">
+                <i class="fas fa-calendar fa-fw me-3"></i><span>Cost Calculator</span>
+            </a>
+            <a href="#" class="listOfLinks list-group-item list-group-item-action py-2 ripple">
+                <i class="fas fa-users fa-fw me-3"></i><span>About</span>
+            </a>
+            <a href="#" class="listOfLinks list-group-item list-group-item-action py-2 ripple">
+                <i class="fas fa-logout fa-fw me-3"></i><span>Logout</span>
+            </a>
+
+        </div>
+    </div>
+</div>
+
+  
+ 
+  <button onclick="goToCurrentMonth()">Today</button>
+  <select id="month-selector" onchange="selectMonth()"></select>
+  <select id="year-selector" onchange="selectYear()"></select>
+  <div class="calendar">
+    <div class="header">
+      <button onclick="prevMonth()">&#8249;</button>
+      <h1 id="month-year"></h1>
+      <button onclick="nextMonth()">&#8250;</button>
+    </div>
+    <div class="days">
+      <div class="day">Sun</div>
+      <div class="day">Mon</div>
+      <div class="day">Tue</div>
+      <div class="day">Wed</div>
+      <div class="day">Thu</div>
+      <div class="day">Fri</div>
+      <div class="day">Sat</div>
+    </div>
+    <div class="dates" id="calendar-dates"></div>
+  </div>
+
+  <script>
+    let currentYear, currentMonth;
+
+    function generateYearOptions() {
+      const yearSelector = document.getElementById('year-selector');
+      const currentYear = new Date().getFullYear();
+      const startYear = currentYear - 10; // Display 10 years in the past and future
+
+      for (let year = startYear; year <= currentYear + 10; year++) {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        yearSelector.appendChild(option);
+      }
+    }
+
+    function generateMonthOptions() {
+      const monthSelector = document.getElementById('month-selector');
+      const months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+
+      for (let i = 0; i < months.length; i++) {
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = months[i];
+        monthSelector.appendChild(option);
+      }
+    }
+
+    function generateCalendar(year, month) {
+      const today = new Date();
+      const currentDay = today.getDate(); // Get the current day of the month
+      const firstDay = new Date(year, month, 1);
+      const lastDay = new Date(year, month + 1, 0);
+      const daysInMonth = lastDay.getDate();
+      const startingDay = firstDay.getDay();
+      
+      const calendarDates = document.getElementById('calendar-dates');
+      calendarDates.innerHTML = '';
+
+      const monthYearElement = document.getElementById('month-year');
+      monthYearElement.textContent = new Date(year, month).toLocaleString('en-us', { month: 'long', year: 'numeric' });
+
+      // Empty cells for previous month
+      for (let i = 0; i < startingDay; i++) {
+        const emptyCell = document.createElement('div');
+        emptyCell.classList.add('date');
+        calendarDates.appendChild(emptyCell);
+      }
+
+      // Dates for the current month
+      for (let i = 1; i <= daysInMonth; i++) {
+        const dateCell = document.createElement('div');
+        dateCell.classList.add('date');
+        dateCell.textContent = i;
+        calendarDates.appendChild(dateCell);
+
+        // Highlight today's date
+        if (i === currentDay && year === today.getFullYear() && month === today.getMonth()) {
+          dateCell.classList.add('today');
+        }
+      }
+      const totalDaysDisplayed = startingDay + daysInMonth;
+      const remainingCells = 42 - totalDaysDisplayed;
+      for (let i = 0; i < remainingCells; i++) {
+        const emptyCell = document.createElement('div');
+        emptyCell.classList.add('date');
+        calendarDates.appendChild(emptyCell);
+      }
+    }
+
+    function prevMonth() {
+      currentMonth--;
+      if (currentMonth < 0) {
+        currentYear--;
+        currentMonth = 11; // December (0-based index)
+      }
+      generateCalendar(currentYear, currentMonth);
+    }
+
+    function nextMonth() {
+      currentMonth++;
+      if (currentMonth > 11) {
+        currentYear++;
+        currentMonth = 0; // January (0-based index)
+      }
+      generateCalendar(currentYear, currentMonth);
+    }
+
+    function goToCurrentMonth() {
+    const today = new Date();
+    currentYear = today.getFullYear();
+    currentMonth = today.getMonth();
+    generateCalendar(currentYear, currentMonth);
+
+    document.getElementById('year-selector').value = currentYear;
+      document.getElementById('month-selector').value = currentMonth;
+  }
+
+  function selectMonth() {
+      const monthSelector = document.getElementById('month-selector');
+      currentMonth = parseInt(monthSelector.value);
+      generateCalendar(currentYear, currentMonth);
+    }
+
+    function selectYear() {
+      const yearSelector = document.getElementById('year-selector');
+      currentYear = parseInt(yearSelector.value);
+      generateCalendar(currentYear, currentMonth);
+    }
+
+    // Initial display for the current month
+    generateYearOptions();
+    generateMonthOptions();
+    const today = new Date();
+    currentYear = today.getFullYear();
+    currentMonth = today.getMonth();
+    document.getElementById('year-selector').value = currentYear;
+    document.getElementById('month-selector').value = currentMonth;
+    generateCalendar(currentYear, currentMonth);
+  </script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+crossorigin="anonymous"></script>
+</body>
+</html>
