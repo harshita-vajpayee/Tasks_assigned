@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TEMPLE KMS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Oswald"
+        }
+        
+        body {
+            font-family: "Open Sans"
+        }
+    </style>
+</head>
+
+<body class="w3-light-grey">
+
+
+    <div class="w3-content" style="max-width:1600px">
+
+        <!-- Header -->
+        <header class="w3-container w3-center w3-padding-48 w3-white">
+            <h1 class="w3-xxxlarge"><b>Kitchen Management System</b></h1>
+            <h6>Welcome to the KMS of <span class="w3-tag">Iskcon Temples</span></h6>
+        </header>
+
+        <!-- Image header -->
+        <header class="w3-display-container w3-wide" id="home">
+            <img class="w3-image" src="/mn-jdrq/temple-kms/ISKCON_official_logo.jpg" alt="Iskcon" width="160" height="106">
+        </header>
+
+        <!-- Grid -->
+        <div class="w3-row w3-padding w3-border">
+
+            <!-- Blog entries -->
+            <div class="w3-col l8 s12">
+
+                <!-- Blog entry -->
+                <div class="w3-container w3-white w3-margin w3-padding-large">
+                    <div class="w3-center">
+                        <h3>Kitchen Management System</h3>
+                        <h5>Description, <span class="w3-opacity">edit : July 3, 2023</span></h5>
+                    </div>
+
+                    <div class="w3-justify">
+                        <p><strong>Hare Krishna!</strong> Mission of Iskcon : We are trying to give human society an opportunity for a life of happiness, good health, peace of mind and all good qualities through God Consciousness.</p>
+                        <p>Nitya Annadana at ISKCON Bangalore We serve free, sumptuous lunch prasadam to temple visitors every day from 11:30 am to 2:00 pm. On your next visit to the temple, do make it a point to relish this delicious prasadam of rice, sambar,
+                            sabji, sweet and buttermilk at our Annadana Hall.</p>
+                        <p class="w3-left"><button class="w3-button w3-white w3-border" onclick="likeFunction(this)"><b><i class="fa fa-thumbs-up"></i> Like</b></button></p>
+                        <hr>
+                        <br>
+                        <h3> About our website</h3>
+                        <p> We have made the website providing all the facilities of the Kitchen of the Iskcon temples.</p>
+                        <p> We have a Calendar to mark all the events of the Iskcon.
+                            <ul>
+                                <li> Bhandaras</li>
+                                <li> Festival events</li>
+                                <li> Other special events</li>
+                            </ul>
+                        </p>
+                        <p> We have a Menu of the kitchen showing all the food items that are available on the particular days,time and events.</p>
+                        <p>We have an Inventory.</p>
+                        <p>We have a Recipe page showing Recipe and ingridients of the food.</p>
+                        <p>We have a store page which updates the stock of the required ingriedients.</p>
+                    </div>
+                    <div class="w3-justify">
+                        <p> In this documentation we will come to know all the snippets of codes and libraries we used to make the KMS website.</p>
+                        <p> We will get to know about or refernces and contributers</p>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="w3-col l4">
+                <img src="ISKCON-Temple-Mayapur.jpg" alt="Iskcon" width="430" height="380"> </div>
+            <img src="download.jfif" alt="Iskcon" width="430" height="380"> </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-container w3-dark-grey" style="padding:32px">
+        <a href="#" class="w3-button w3-black w3-padding-large w3-margin-bottom"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+        <p>Our Github repository <a href="https://github.com/RaghuwanshiAditya/Public" target="_blank">Git repo</a></p>
+    </footer>
+
+    <script>
+        // Toggle between hiding and showing blog replies/comments
+        document.getElementById("myBtn").click();
+
+        function myFunction(id) {
+            var x = document.getElementById(id);
+            if (x.className.indexOf("w3-show") == -1) {
+                x.className += " w3-show";
+            } else {
+                x.className = x.className.replace(" w3-show", "");
+            }
+        }
+
+        function likeFunction(x) {
+            x.style.fontWeight = "bold";
+            x.innerHTML = "✓ Liked";
+        }
+    </script>
+
+</body>
+
+</html>
