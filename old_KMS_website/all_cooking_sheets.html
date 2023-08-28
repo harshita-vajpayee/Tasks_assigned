@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Cooking Sheets</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .calendar-btn {
+            border: none;
+            background-color: #009688;
+            color: #fff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-primary shadow">
+        <div class="container-fluid d-flex justify-content-between">
+            <div class="d-flex justify-content-center align-items-center my-0 py-0">
+                <button class="btn text-white" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+                    aria-controls="offcanvasWithBothOptions">
+                    <span class="navbar-toggler-icon text-white"></span>
+                </button>
+                <a class=" navbar-brand text-white text-uppercase" href="#">Kitchen</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class=" d-flex justify-content-end">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 z-100">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">Menu</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <img class="object-fit-cover border rounded-circle " style="width: 40px;" src="/images/profile.jpg"
+                        alt="profile">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!--  Sidebar -->
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+        aria-labelledby="offcanvasWithBothOptionsLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="list-group list-group-flush mx-2 mt-4">
+                <a href="/home.html" class="listOfLinks list-group-item list-group-item-action py-2 ripple"
+                    aria-current="true">
+                    <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>ICS Home</span>
+                </a>
+                <a href="/menu_management.html" class="listOfLinks list-group-item list-group-item-action py-2 ripple">
+                    <i class="fas fa-chart-area fa-fw me-3"></i><span>Menu Management</span>
+                </a>
+                <a href="/all_meal_count.html" class="listOfLinks list-group-item list-group-item-action py-2 ripple">
+                    <i class="fas fa-lock fa-fw me-3"></i><span>All Meals Count</span>
+                </a>
+                <a href="/all_cooking_sheets.html" class="active listOfLinks list-group-item list-group-item-action py-2 ripple">
+                    <i class="fas fa-chart-line fa-fw me-3"></i><span>All Cooking Sheets</span>
+                </a>
+                <a href="/" class="listOfLinks list-group-item list-group-item-action py-2 ripple">
+                    <i class="fas fa-chart-pie fa-fw me-3"></i><span>Serving Data Entry</span>
+                </a>
+                <a href="/purchase_list.html" class="listOfLinks list-group-item list-group-item-action py-2 ripple">
+                    <i class="fas fa-chart-bar fa-fw me-3"></i><span>Purchase List</span>
+                </a>
+                <a href="/" class="listOfLinks list-group-item list-group-item-action py-2 ripple">
+                    <i class="fas fa-globe fa-fw me-3"></i><span>All Recipes</span>
+                </a>
+                <a href="/calendar.html" class="listOfLinks list-group-item list-group-item-action py-2 ripple">
+                    <i class="fas fa-building fa-fw me-3"></i><span>Event Calendar</span>
+                </a>
+                <a href="/costCalculator.html" class="listOfLinks list-group-item list-group-item-action py-2 ripple">
+                    <i class="fas fa-calendar fa-fw me-3"></i><span>Cost Calculator</span>
+                </a>
+                <a href="#" class="listOfLinks list-group-item list-group-item-action py-2 ripple">
+                    <i class="fas fa-users fa-fw me-3"></i><span>About</span>
+                </a>
+                <a href="#" class="listOfLinks list-group-item list-group-item-action py-2 ripple">
+                    <i class="fas fa-logout fa-fw me-3"></i><span>Logout</span>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid bg-success text-white text-center">
+        <p id="selected-date" class="fw-bold py-2 mb-0">Date: <span id="current-date"></span></p>
+    </div>
+
+    <div class="bg-black">
+        <ul class="nav nav-underline justify-content-around" id="mealTabs">
+            <li class="nav-item">
+                <a class="nav-link active text-white bg-transparent" data-bs-toggle="tab"
+                    href="#breakfast">Breakfast</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white bg-transparent" data-bs-toggle="tab" href="#lunch">Lunch</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white bg-transparent" data-bs-toggle="tab" href="#dinner">Dinner</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white bg-transparent" data-bs-toggle="tab" href="#all">All</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container mt-3">
+        <div class="d-flex justify-content-center">
+            <div class="text-center mx-2">
+                <!-- <button class="btn btn-success shadow rounded-circle py-2" id="calendar-button"
+                    onclick="openCalendar()">📅</button> -->
+
+                <input type="date" class="calendar-btn btn btn-success shadow " id="calendar-input"
+                    onchange="updateSelectedDate()" value="📅">
+            </div>
+            <div class="text-center">
+                <button class="btn btn-primary shadow rounded-circle py-2">🌐</button>
+            </div>
+            <div class="text-center">
+                <button onclick="showMealCount()" class="btn text-white shadow fw-bold mx-2"
+                    style="background-color: rgb(177, 43, 226);">Meal Count</button>
+                <button onclick="window.print()" class="btn text-white shadow fw-bold"
+                    style="background-color: rgb(177, 43, 226);">Print</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid text-center my-2" style="background-color: rgb(200, 230, 201);">
+        <p class="fw-bold">Event: Temple</p>
+    </div>
+
+    <div class="tab-content mt-0" id="mealTables">
+        <!-- Breakfast Tables -->
+        <div class="tab-pane fade show active" id="breakfast">
+            <div class="m-4 d-md-flex justify-content-between gap-4">
+                <!-- Left Side -->
+                <div class="table-responsive w-100">
+                    <!-- First Table -->
+                    <table
+                        class="table table-bordered border border-black rounded text-center table-hover w-100 shadow">
+                        <thead style="background-color: #e1bee7;" class="">
+                            <tr style="background-color: #e1bee7;">
+                                <th style="background-color: #e1bee7;">Varai_Upma_Wet</th>
+                                <th style="background-color: #e1bee7;" colspan="2">Equal Batches = 1</th>
+                            </tr>
+                            <tr>
+                                <th style="background-color: #e1bee7;">Batch Yield</th>
+                                <th style="background-color: #e1bee7;" colspan="2">0.0L</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Little Millet</td>
+                                <td>10.00</td>
+                                <td>KG</td>
+                            </tr>
+                            <tr>
+                                <td>Groundnut oil , For roasting Varai</td>
+                                <td>500</td>
+                                <td>ML</td>
+                            </tr>
+                            <tr>
+                                <td>Jeera Akkha</td>
+                                <td>125</td>
+                                <td>GMS</td>
+                            </tr>
+                            <tr>
+                                <td>Groundnut oil , for Chaunk</td>
+                                <td>2.5</td>
+                                <td>L</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- Second table -->
+                    <table
+                        class="table table-bordered border border-black rounded text-center table-hover w-100 shadow">
+                        <thead style="background-color: #e1bee7;" class="">
+                            <tr style="background-color: #e1bee7;">
+                                <th style="background-color: #e1bee7;">Varai_Upma_Wet</th>
+                                <th style="background-color: #e1bee7;" colspan="2">Equal Batches = 1</th>
+                            </tr>
+                            <tr>
+                                <th style="background-color: #e1bee7;">Batch Yield</th>
+                                <th style="background-color: #e1bee7;" colspan="2">0.0L</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Little Millet</td>
+                                <td>10.00</td>
+                                <td>KG</td>
+                            </tr>
+                            <tr>
+                                <td>Groundnut oil , For roasting Varai</td>
+                                <td>500</td>
+                                <td>ML</td>
+                            </tr>
+                            <tr>
+                                <td>Jeera Akkha</td>
+                                <td>125</td>
+                                <td>GMS</td>
+                            </tr>
+                            <tr>
+                                <td>Groundnut oil , for Chaunk</td>
+                                <td>2.5</td>
+                                <td>L</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Right Side -->
+                <div class="w-100">
+                    <table class="table table-bordered border border-black rounded text-center table-hover shadow">
+                        <thead>
+                            <tr style="background-color: #e1bee7;">
+                                <th style="background-color: #e1bee7;" id="selected-date-in-title">Mon Jul 17 2023</th>
+                                <th style="background-color: #e1bee7;" colspan="2">Equal Batches = 1</th>
+                            </tr>
+                            <tr>
+                                <th style="background-color: #e1bee7;">Batch Yield</th>
+                                <th style="background-color: #e1bee7;" colspan="2">0.0L</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Little Millet</td>
+                                <td>10.00</td>
+                                <td>KG</td>
+                            </tr>
+                            <tr>
+                                <td>Sugar</td>
+                                <td>12.5</td>
+                                <td>KG</td>
+                            </tr>
+                            <tr>
+                                <td>Sugar</td>
+                                <td>12.5</td>
+                                <td>KG</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lunch Tables -->
+        <div class="tab-pane fade" id="lunch">
+            <div class="m-4 d-md-flex justify-content-between gap-4">
+                <!-- First Table -->
+                <div class="table-responsive w-100">
+                    <table class="table table-bordered border border-black rounded text-center table-hover shadow">
+                        <thead>
+                            <tr style="background-color: #e1bee7;">
+                                <th style="background-color: #e1bee7;">Title 1</th>
+                                <th style="background-color: #e1bee7;" colspan="2">Equal Batches = 1</th>
+                            </tr>
+                            <tr>
+                                <th style="background-color: #e1bee7;">Batch Yield</th>
+                                <th style="background-color: #e1bee7;" colspan="2">0.0L</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Little Millet</td>
+                                <td>10.00</td>
+                                <td>KG</td>
+                            </tr>
+                            <tr>
+                                <td>Groundnut oil , For roasting Varai</td>
+                                <td>500</td>
+                                <td>ML</td>
+                            </tr>
+                            <tr>
+                                <td>Jeera Akkha</td>
+                                <td>125</td>
+                                <td>GMS</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Second table -->
+                <div class="w-100">
+                    <table class="table table-bordered border border-black rounded text-center table-hover shadow">
+                        <thead>
+                            <tr>
+                                <th style="background-color: #e1bee7;">Title 1</th>
+                                <th style="background-color: #e1bee7;" colspan="2">Equal Batches = 1</th>
+                            </tr>
+                            <tr>
+                                <th style="background-color: #e1bee7;">Batch Yield</th>
+                                <th style="background-color: #e1bee7;" colspan="2">0.0L</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Little Millet</td>
+                                <td>10.00</td>
+                                <td>KG</td>
+                            </tr>
+                            <tr>
+                                <td>Sugar</td>
+                                <td>12.5</td>
+                                <td>KG</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dinner Tables -->
+        <div class="tab-pane fade" id="dinner">
+            <div class="m-4 d-md-flex justify-content-between gap-4">
+                <!-- First Table -->
+                <div class="table-responsive w-100">
+                    <table class="table table-bordered border border-black rounded text-center table-hover shadow">
+                        <thead>
+                            <tr>
+                                <th style="background-color: #e1bee7;">Title 1</th>
+                                <th style="background-color: #e1bee7;" colspan="2">Equal Batches = 1</th>
+                            </tr>
+                            <tr>
+                                <th style="background-color: #e1bee7;">Batch Yield</th>
+                                <th style="background-color: #e1bee7;" colspan="2">0.0L</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Little Millet</td>
+                                <td>10.00</td>
+                                <td>KG</td>
+                            </tr>
+                            <tr>
+                                <td>Groundnut oil , For roasting Varai</td>
+                                <td>500</td>
+                                <td>ML</td>
+                            </tr>
+                            <tr>
+                                <td>Jeera Akkha</td>
+                                <td>125</td>
+                                <td>GMS</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Second table -->
+                <div class="w-100">
+                    <table class="table table-bordered rounded text-center table-hover">
+                        <thead class="table-info">
+                            <tr style="background-color: darkorchid;">
+                                <th>Title 1</th>
+                                <th colspan="2">Equal Batches = 1</th>
+                            </tr>
+                            <tr>
+                                <th>Batch Yield</th>
+                                <th colspan="2">0.0L</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Little Millet</td>
+                                <td>10.00</td>
+                                <td>KG</td>
+                            </tr>
+                            <tr>
+                                <td>Sugar</td>
+                                <td>12.5</td>
+                                <td>KG</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- All Tables -->
+        <div class="tab-pane fade" id="all">
+            <div class="m-4 d-md-flex justify-content-between gap-4">
+                <!-- First Table -->
+                <div class="table-responsive w-100">
+                    <table class="table table-bordered rounded text-center table-hover w-100">
+                        <thead class="table-info">
+                            <tr style="background-color: darkorchid;">
+                                <th>Title 1</th>
+                                <th colspan="2">Equal Batches = 1</th>
+                            </tr>
+                            <tr>
+                                <th>Batch Yield</th>
+                                <th colspan="2">0.0L</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Little Millet</td>
+                                <td>10.00</td>
+                                <td>KG</td>
+                            </tr>
+                            <tr>
+                                <td>Groundnut oil , For roasting Varai</td>
+                                <td>500</td>
+                                <td>ML</td>
+                            </tr>
+                            <tr>
+                                <td>Jeera Akkha</td>
+                                <td>125</td>
+                                <td>GMS</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Second table -->
+                <div class="w-100">
+                    <table class="table table-bordered rounded text-center table-hover">
+                        <thead class="table-info">
+                            <tr style="background-color: darkorchid;">
+                                <th>Title 1</th>
+                                <th colspan="2">Equal Batches = 1</th>
+                            </tr>
+                            <tr>
+                                <th>Batch Yield</th>
+                                <th colspan="2">0.0L</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Little Millet</td>
+                                <td>10.00</td>
+                                <td>KG</td>
+                            </tr>
+                            <tr>
+                                <td>Sugar</td>
+                                <td>12.5</td>
+                                <td>KG</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script>
+        // tab switching
+        function showMeal(tabId) {
+            const mealTables = document.getElementById('mealTables');
+            const tabs = mealTables.querySelectorAll('.tab-pane');
+            const tabsLinks = document.querySelectorAll('[data-bs-toggle="tab"]');
+
+            tabs.forEach(tab => {
+                if (tab.id === tabId) {
+                    tab.classList.add('show', 'active');
+                } else {
+                    tab.classList.remove('show', 'active');
+                }
+            });
+
+            tabsLinks.forEach(link => {
+                if (link.getAttribute('href') === `#${tabId}`) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+
+        // Click event listeners to the tabs
+        const tabsLinks = document.querySelectorAll('[data-bs-toggle="tab"]');
+        tabsLinks.forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                const targetTabId = link.getAttribute('href').substring(1);
+                showMeal(targetTabId);
+            });
+        });
+
+        // Initially show the active tab
+        const activeTabLink = document.querySelector('.nav-link.active');
+        const activeTabId = activeTabLink.getAttribute('href').substring(1);
+        showMeal(activeTabId);
+
+        // function openCalendar() {
+        //     alert('Calendar icon clicked!');
+        // }
+
+        // Set the current date in the page
+        const currentDateElement = document.getElementById('current-date');
+        const currentDate = new Date().toLocaleDateString('en-US');
+        currentDateElement.textContent = currentDate;
+
+        // Show the selected date on the page when the calendar value changes
+        function updateSelectedDate() {
+            const calendarInput = document.getElementById('calendar-input');
+            const selectedDate = calendarInput.value;
+            const selectedDateElement = document.getElementById('selected-date');
+            selectedDateElement.textContent = `Date: ${selectedDate}`;
+            const selectedDateInTitleRow = document.getElementById('selected-date-in-title');
+            selectedDateInTitleRow.textContent = selectedDate;
+        }
+
+        function showMealCount() {
+            window.location.href = 'all_meal_count.html';
+        }
+    </script>
+</body>
+
+</html>
