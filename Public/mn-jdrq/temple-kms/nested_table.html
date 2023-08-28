@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="add">
+        <label> Add department</label>
+        <input id="add_depart" type="text">
+        <button class="add_dep" onclick="add()">Add</button>
+    </div>
+    <script>
+        var table = document.createElement('table');
+        //table.setAttribute = ("id", "mytable");
+        //document.getElementById("mytable").style.width = "33%";
+        let headers = ['Department', 'No. of Employees', 'Admin', 'Add_more']
+        let headerRow = document.createElement('tr');
+
+        headers.forEach(headerText => {
+            let header = document.createElement('th');
+            let textNode = document.createTextNode(headerText);
+            header.appendChild(textNode);
+            headerRow.appendChild(header);
+        })
+        table.appendChild(headerRow);
+        var x;
+
+        function add() {
+            x = document.getElementById("add_depart").value;
+            console.log(x)
+            formTable(x);
+        }
+
+        function formTable(x) {
+
+            var tr = document.createElement('tr');
+
+            var td1 = document.createElement('td');
+            var td2 = document.createElement('td');
+            var td3 = document.createElement('td');
+            var td4 = document.createElement('td');
+
+            var text1 = document.createTextNode(x);
+            var text2 = document.createTextNode("");
+            var text3 = document.createTextNode("");
+            var addbtn = document.createElement('input');
+            addbtn.type = "button";
+            addbtn.className = "addbtn";
+
+            td1.appendChild(text1);
+            td2.appendChild(text2);
+            td3.appendChild(text3);
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3);
+            tr.appendChild(addbtn);
+
+            table.appendChild(tr);
+
+            document.body.appendChild(table);
+
+            addbtn.addEventListener("click", () => {
+                addChildRow(tr, {
+                    department: x
+                })
+            });
+
+            let addChildRow = (parentRow, d) => {
+                const childRow = document.createElement("tr");
+                //const sub_department = document.createElement("td");
+                var form = document.createElement("form");
+                var subFN = document.createElement("input");
+                subFN.setAttribute("type", "text");
+                subFN.id = "fullName";
+                subFN.setAttribute("placeholder", "Sub department");
+
+                document.getElementsByTagName("body")[0]
+                    .appendChild(form);
+
+                var subEmployee = document.createElement("input");
+                subEmployee.setAttribute("type", "text");
+                subEmployee.setAttribute("id", "employees");
+                subEmployee.setAttribute("placeholder", "No. of Employees");
+
+                var subAdmin = document.createElement("input");
+                subAdmin.setAttribute("type", "text");
+                subAdmin.setAttribute("id", "admin");
+                subAdmin.setAttribute("placeholder", "Admin");
+
+                // create a submit button
+                var sub = document.createElement("input");
+                //s.setAttribute("type", "submit"); //Do Not use else page will refresh
+                sub.setAttribute("type", "Button");
+                sub.setAttribute("value", "Submit");
+                sub.setAttribute("id", "Add");
+
+                // Append the full name input to the form
+                form.appendChild(subFN);
+                form.appendChild(subEmployee);
+                form.appendChild(subAdmin);
+                // Append the submit button to the form
+                form.appendChild(sub);
+
+                var subName = document.getElementById("fullName")
+                var employee = document.getElementById("employees")
+                var subAdmin = document.getElementById("admin")
+                var Add = document.getElementById("Add")
+
+                Add.addEventListener("click", function() {
+                    data = {
+                        "sub_department": subName.value,
+                        "employee": employee.value,
+                        "admin": subAdmin.value
+                    }
+                    console.log(data);
+                    const subDep = document.createElement("td");
+                    subDep.textContent = data.sub_department;
+                    const subEmp = document.createElement("td");
+                    subEmp.textContent = data.employee;
+                    const subAdm = document.createElement("td");
+                    subAdm.textContent = data.admin;
+                    childRow.appendChild(subDep);
+                    childRow.appendChild(subEmp);
+                    childRow.appendChild(subAdm);
+
+                    table.insertBefore(childRow, parentRow.nextSibling)
+                    document.body.removeChild(form);
+                    //form.removeChild(subFN, subEmployee, subAdmin);
+                })
+            }
+        }
+
+        document.body.appendChild(table);
+    </script>
+
+</body>
+
+</html>
